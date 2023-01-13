@@ -1,0 +1,5 @@
+node_modules/
+virtualenv/
+
+# OSX
+.DS_Store
