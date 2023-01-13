@@ -59,3 +59,9 @@ Repeating steps like these and making the repeating part less verbose yields the
 |13|481 B|78.04 TB|178,383,929,313x|
 |14|518 B|780.37 TB|1,656,422,200,772x|
 |15|555 B|7.62 PB|15,459,940,540,540x|
+
+# Vulnerable package
+
+- **Python PyYAML**: parses until crashes
+- **NodeJS YAML**: Crashes with error: "_ReferenceError: Excessive alias count indicates a resource exhaustion attack_"
+- **Python JS-YAML**: parses until crashes
