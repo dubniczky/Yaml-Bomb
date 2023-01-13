@@ -1,0 +1,11 @@
+{
+  "name": "yaml-bomb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "yaml": "^2.2.1"
+  }
+}
