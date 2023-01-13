@@ -2,6 +2,44 @@
 
 Yaml bomb files and exploitable programming languages
 
+## What is a bomb?
+
+A bomb is a special type of payload usually targeted at web servers with internet-facing endpoints that upon serialization expands in size on an exponential scale, taking up all the available memory of the systems and eventually crashing them. These crashes cause outages, so bombs are ideal for denial-of-service attacks.
+
+## How does the Yaml bomb work?
+
+Like in many cases with other bombs, a feature of a serialization format to replicate content is used. This way we can embed more data in a smaller space. YAML supports declaring variables. 
+
+```yaml
+firstLink: &example 'https://example.com'
+links:
+  - *example
+  - https://example.com/fake
+```
+
+These variables are useful to repeat data in multiple places. For example in a configuration file use-case, this would mean that some data only have to be changed in one place. The previous YAML would evaluate to the following file:
+
+```yaml
+firstLink: 'https://example.com'
+links:
+  - 'https://example.com'
+  - 'https://example.com/fake'
+```
+
+Since data can be multiplied this way, nothing stops us from declaring something, and using it to declare something else
+
+```yaml
+apple: &one apples
+apples: &five [ *one,*one,*one,*one,*one ]
+appless: &twentyfive [ *five,*five,*five,*five,*five ]
+...
+```
+
+Repeating steps like these and making the repeating part less verbose yields the results visible in the files:
+
+- `bomb.small.yaml`
+- `bomb.pb.yaml`
+
 ## Size
 
 |Lines|Packed Data|Unpacked Data|Scaling factor|
